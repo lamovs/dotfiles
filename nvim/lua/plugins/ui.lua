@@ -1,15 +1,9 @@
 return {
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
+    "folke/tokyonight.nvim",
     opts = {
-      flavour = "frappe",
+      style = "night",
     },
-    config = function(_, opts)
-      require("catppuccin").setup(opts)
-      vim.cmd.colorscheme("catppuccin-frappe")
-    end,
   },
   {
     "nvim-lualine/lualine.nvim",
