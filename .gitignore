@@ -1,0 +1,5 @@
+# Zed database files
+zed/prompts/
+
+# macOS
+.DS_Store

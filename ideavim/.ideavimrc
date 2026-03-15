@@ -1,0 +1,230 @@
+" ==============================================================================
+" 🧠 Vim/IdeaVim Mapping Cheatsheet
+" ==============================================================================
+
+" ────────────────────────────────
+" 1️⃣ ОБЩАЯ ИДЕЯ
+" ────────────────────────────────
+" В Vim есть разные режимы:
+"   n — Normal       (обычный)
+"   x — Visual       (выделение)
+"   i — Insert       (ввод)
+"   o — Operator     (после d, c, y)
+"   s — Select
+"   c — Command-line (ввод : и /)
+"
+" map → создаёт рекурсивную привязку во всех режимах, кроме Insert/Command.
+" Это часто ломает dd, cc, yy, и т.п., т.к. «d» становится префиксом к твоим мапам.
+" Не используй `map`, если не понимаешь, зачем тебе operator-pending режим.
+
+" ────────────────────────────────
+" 2️⃣ ОСНОВНЫЕ ВИДЫ
+" ────────────────────────────────
+" nnoremap → Normal mode, без рекурсии  ✅ безопасно (рекомендуется)
+" xnoremap → Visual mode, без рекурсии  ✅ для выделений
+" inoremap → Insert mode, без рекурсии  ✅ для Insert-шорткатов
+" onoremap → Operator-pending mode      ✅ для text objects (diz, ciq и т.п.)
+" nmap      → Normal mode, рекурсивно   ⚠️ редко нужно
+" map       → Все режимы, рекурсивно    ⚠️ опасно (ломает dd, cc, yy)
+" noremap   → Все режимы, без рекурсии  ⚠️ слишком общее, лучше режимный вариант
+
+" ────────────────────────────────
+" 3️⃣ ПРАКТИКА
+" ────────────────────────────────
+" ✅ Для хоткеев в Normal → nnoremap
+" ✅ Для выделения → xnoremap
+" ✅ Для выхода из Insert (jk → Esc) → inoremap
+" ✅ Для кастомных текстовых объектов → onoremap
+" ⚠️ Никогда не начинай свои мапы с d, c, y, g, z — это системные операторы Vim.
+" ⚠️ Не используй просто map, если не хочешь сломать dd/yy/cc.
+" ⚙️ Оптимальный timeoutlen для <leader>-комбо: 300–700 мс (у тебя сейчас 4000).
+
+" ────────────────────────────────
+" 4️⃣ ПРИМЕРЫ
+" ────────────────────────────────
+" nnoremap <leader>w :w<CR>        " сохранить файл
+" xnoremap <leader>c "+y           " копировать выделение в системный буфер
+" inoremap jk <Esc>                " быстрый выход из Insert
+" onoremap p i(                    " text object: внутри скобок
+" ==============================================================================
+
+" =============================== LEADER & CORE ===============================
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+
+" Поиск/информация
+set incsearch
+set showcmd
+set showmode
+set hlsearch
+
+" Номера строк
+set number
+set relativenumber
+
+" Скролл-комфорт
+set scrolloff=2
+
+" Таймауты для корректной работы <leader>-комбо
+set timeout
+set timeoutlen=500
+
+" Умные табы/отступы ()
+set smarttab
+" set smartindent
+
+" =============================== IDEA PLUGINS ===============================
+" Официально поддерживаемые IdeaVim-«плагины»
+set surround
+set commentary
+set easymotion
+set sneak
+set matchit
+set quickscope
+set highlightedyank
+set multiple-cursors
+set argtextobj
+set exchange
+set ideajoin
+set nerdtree
+set nocompatible
+
+" Сторонние плагины
+" Нужен плагин Vim Peekaboo
+set peekaboo
+
+" Нужен плагин Which-Key
+set which-key
+
+" Нужен Vim FunctionTextObj
+set functiontextobj
+
+Plug 'thinca/vim-textobj-user'
+Plug 'vim-textobj-anyblock'
+
+" HighlightYank параметры
+let g:highlightedyank_highlight_duration = "1000"
+let g:highlightedyank_highlight_color = "rgba(160, 160, 160, 155)"
+
+" =============================== SEARCH HELPERS =============================
+" Снять подсветку поиска
+nnoremap <silent> <leader>nh :nohlsearch<CR>
+
+" =============================== WINDOW/TABS NAV ============================
+" Двигать фокус между сплитами как в tmux
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Быстрое создание/закрытие сплитов
+map <leader>sv :action SplitVertically<CR>
+map <leader>sh :action SplitHorizontally<CR>
+map <leader>co :action ChangeSplitOrientation<CR>
+map <leader>q  :action CloseContent<CR>
+
+" Перемещения редакторов/вкладок
+map <leader>mo :action MoveEditorToOppositeTabGroup<CR>
+map <leader>oo :action OpenEditorInOppositeTabGroup<CR>
+map <leader>mr :action MoveTabRight<CR>
+map <leader>md :action MoveTabDown<CR>
+
+" =============================== IDE ACTIONS ================================
+" Навигация/поиск/файлы/документация
+map <leader>ac :action GotoAction<CR>
+map <leader>fi :action GotoFile<CR>
+map <leader>ur :action GotoUrlAction<CR>
+map <leader>te :action TextSearchAction<CR>
+map <leader>qd :action QuickJavaDoc<CR>
+map <leader>de :action ShowErrorDescription<CR>
+" Go to Declaration в новом вертикальном сплите
+nnoremap <leader>bb :action Macro.DeclInVerticalSplit<CR>
+nnoremap <leader>ch :action CallHierarchy<CR>
+nnoremap <leader>sf :action StructuralSearchPlugin.StructuralSearchAction<CR>
+
+
+
+" Инструменты
+map <leader>ai :action ActivateAIAssistantToolWindow<CR>
+map <leader>mm :action MainMenuAsSeparateToolbarAction<CR>
+map <leader>nb :action ShowNavBar<CR>
+
+" Usages
+map <leader>su :action ShowUsages<CR>
+map <leader>hu :action FindUsagesInFile<CR>
+map <leader>fu :action FindUsages<CR>
+
+" VCS
+map <leader>rb :action Vcs.RollbackChangedLines<CR>
+
+" Рефакторинги
+map <leader>rt :action Refactorings.QuickListPopupAction<CR>
+map <leader>em :action ExtractMethod<CR>
+" xnoremap <leader>em :action ExtractMethod<CR>
+map <leader>iv :action IntroduceVariable<CR>
+" xnoremap <leader>iv :action IntroduceVariable<CR>
+map <leader>ef :action IntroduceField<CR>
+map <leader>ec :action IntroduceConstant<CR>
+map <leader>ep :action IntroduceParameter<CR>
+
+" Форматирование/линтеры
+map <leader>oi :action OptimizeImports<CR>
+map <leader>rc :action ReformatCode<CR>
+map <leader>rs :action ShowReformatFileDialog<CR>
+map <leader>fe :action Javascript.Linters.EsLint.Fix<CR>
+map <leader>fp :action ReformatWithPrettierAction<CR>
+map <leader>sw :action EditorToggleUseSoftWraps<CR>
+
+" Surround-меню/шаблоны/Эммет
+map <leader>ss :action SurroundWith<CR>
+map <leader>st :action SurroundWithLiveTemplate<CR>
+map <leader>se :action SurroundWithEmmet<CR>
+
+" =============================== TEXT OBJECTS ===============================
+" ArgTextObj (работа с аргументами функций): daa / cia / via и т.п.
+" Exchange: поменять два участка местами
+"   1) Наведи курсор на первый объект: cxiw (или cxap и т.д.)
+"   2) Перейди на второй и нажми cX
+" Ничего мапить не нужно — это команды.
+
+" =============================== EDITING QoL ================================
+" Добавить строку верх/низ и ОСТАТЬСЯ на месте
+map <silent> <CR> o<Esc>k
+map <silent> <S-CR> O<Esc>j
+
+" Добавить строку и перейти на неё
+map <silent> zj o<Esc>
+map <silent> zk O<Esc>
+
+" Удалить строку ниже/выше без движения курсора
+nnoremap <silent> dn :+d<CR>
+nnoremap <silent> dv :-1d<CR>
+
+" Быстрый выход из Insert
+inoremap jk <Esc>
+
+map <leader>td :action GotoTypeDeclaration<CR>
+map <leader>im :action GotoImplementation<CR>
+
+" =============================== BOOKMARKS ==================================
+map <leader>ab :action ToggleBookmark<CR>
+map <leader>mb :action ToggleBookmarkWithMnemonic<CR>
+map <leader>ml :action ShowTypeBookmarks<CR>
+map <leader>al :action ShowBookmarks<CR>
+
+" =============================== PROJECT VIEW ===============================
+" Вместо NERDTree — стандартное окно проекта
+map <leader>pp :action ActivateProjectToolWindow<CR>
+map <leader>pf :action SelectInProjectView<CR>
+map <leader>ps :action FileStructurePopup<CR>
+map <leader>zm :action ToggleZenMode<CR>
+map <leader>ln :action EditorGutterToggleGlobalLineNumbers<CR>
+
+" =============================== REGISTER TOOLS =============================
+" Peekaboo в IdeaVim нет — используем стандартные регистры: "0, "1, "
+" При желании можно привязать окно Recent Files:
+map <leader>rf :action RecentFiles<CR>
+
+" =============================== MISC ======================================
+" Быстрый toggle ошибок/предупреждений подсветки
+map <leader>tw :action ToggleInlineHintsAction<CR>
