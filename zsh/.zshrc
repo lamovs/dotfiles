@@ -109,3 +109,6 @@ eval "$(mise activate zsh)"
 
 # Zoxide
 eval "$(zoxide init zsh)"
+
+KEYTIMEOUT=1
+bindkey -v
