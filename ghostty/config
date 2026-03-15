@@ -2,5 +2,5 @@ theme = TokyoNight Night
 macos-option-as-alt = true
 font-family = "FiraCode Nerd Font"
 font-size = 15
+adjust-cell-height = 10%
 font-feature = liga
-
