@@ -108,7 +108,4 @@ source $ZSH/oh-my-zsh.sh
 eval "$(mise activate zsh)"
 
 # Zoxide
-eval "$(zoxide init zsh)"
-
-KEYTIMEOUT=1
-bindkey -v
+eval "$(zoxide init --cmd cd zsh)"
