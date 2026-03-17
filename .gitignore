@@ -3,3 +3,6 @@ zed/prompts/
 
 # macOS
 .DS_Store
+
+# Neovim logs
+.nvimlog

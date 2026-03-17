@@ -48,9 +48,5 @@ return {
     },
     opts = {},
   },
-  {
-    "nvim-tree/nvim-web-devicons",
-    lazy = true,
-  },
   { "akinsho/bufferline.nvim", enabled = false },
 }
