@@ -6,3 +6,6 @@ zed/prompts/
 
 # Neovim logs
 .nvimlog
+
+# Local GitHub Copilot credentials
+github-copilot/apps.json
