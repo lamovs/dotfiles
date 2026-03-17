@@ -2,7 +2,8 @@ theme = Catppuccin Frappe
 macos-option-as-alt = true
 font-family = "FiraCode Nerd Font"
 font-size = 15
-adjust-cell-height = 10%
+# Keep the default cell height so tmux's bottom status line does not visually overlap pane text.
+adjust-cell-height = 0
 font-feature = liga
 window-padding-x = 16
 window-padding-y = 12
