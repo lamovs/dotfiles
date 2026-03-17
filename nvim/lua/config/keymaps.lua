@@ -16,3 +16,24 @@ vim.keymap.set("n", "zj", "<cmd>call append(line('.'), '')<CR>j", { desc = "add 
 
 -- Add new line above, cursor moves there
 vim.keymap.set("n", "zk", "<cmd>call append(line('.')-1, '')<CR>k", { desc = "add line above and move cursor" })
+
+-- Flash jump + go to definition (current window)
+vim.keymap.set("n", "sd", function()
+  require("flash").jump({
+    action = function(match)
+      vim.api.nvim_win_set_cursor(match.win, match.pos)
+      vim.lsp.buf.definition()
+    end,
+  })
+end, { desc = "Flash jump + go to definition" })
+
+-- Flash jump + go to definition (vertical split)
+vim.keymap.set("n", "sv", function()
+  require("flash").jump({
+    action = function(match)
+      vim.api.nvim_win_set_cursor(match.win, match.pos)
+      vim.cmd("vsplit")
+      vim.lsp.buf.definition()
+    end,
+  })
+end, { desc = "Flash jump + go to definition (vsplit)" })
