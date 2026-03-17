@@ -20,6 +20,10 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- Go support (LSP, treesitter, formatting, etc.)
     { import = "lazyvim.plugins.extras.lang.go" },
+    -- JavaScript / TypeScript support
+    { import = "lazyvim.plugins.extras.lang.typescript" },
+    -- ESLint integration
+    { import = "lazyvim.plugins.extras.linting.eslint" },
     -- Copilot integration
     { import = "lazyvim.plugins.extras.ai.copilot" },
     -- Test runner UI and keymaps
