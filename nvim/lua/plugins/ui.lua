@@ -2,7 +2,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-frappe",
+      colorscheme = "catppuccin-latte",
     },
   },
   {
@@ -11,9 +11,8 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      flavour = "frappe",
-      -- TODO: Remove this block if you stop using catppuccin-frappe.
-      -- It only makes Snacks Explorer match the editor background.
+      flavour = "latte",
+      -- Keep Snacks Explorer aligned with the editor background.
       custom_highlights = function(colors)
         local panel = colors.base
         local border = colors.surface1
@@ -61,7 +60,7 @@ return {
     "nvim-lualine/lualine.nvim",
     opts = {
       options = {
-        theme = "catppuccin-frappe",
+        theme = "catppuccin-latte",
         globalstatus = true,
       },
     },

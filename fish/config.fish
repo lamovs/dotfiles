@@ -1,6 +1,7 @@
 # Editor
 set -gx EDITOR nvim
 set -gx VISUAL nvim
+set -g fish_greeting
 
 # Mise (runtime manager)
 mise activate fish | source
