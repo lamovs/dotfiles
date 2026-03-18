@@ -37,3 +37,7 @@ vim.keymap.set("n", "sv", function()
     end,
   })
 end, { desc = "Flash jump + go to definition (vsplit)" })
+
+vim.keymap.set("n", "<leader>yl", function()
+  require("config.copy_path").copy_current_relative_path_with_line()
+end, { desc = "copy relative path:line" })
