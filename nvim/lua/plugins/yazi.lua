@@ -1,8 +1,36 @@
-local function open_yazi_at_project_root()
-  local root = LazyVim.root()
+local function normalize_path(path)
+  if not path or path == "" then
+    return nil
+  end
 
-  if not root or root == "" then
-    require("yazi").yazi(nil, vim.fn.getcwd())
+  return vim.fs.normalize(vim.fn.fnamemodify(path, ":p"))
+end
+
+local function current_file_in(root)
+  local current_file = normalize_path(vim.api.nvim_buf_get_name(0))
+  local normalized_root = normalize_path(root)
+
+  if not current_file or not normalized_root then
+    return nil
+  end
+
+  if current_file == normalized_root then
+    return current_file
+  end
+
+  if vim.startswith(current_file, normalized_root .. "/") then
+    return current_file
+  end
+
+  return nil
+end
+
+local function open_yazi_at_project_root()
+  local root = normalize_path(LazyVim.root()) or normalize_path(vim.fn.getcwd())
+  local current_file = current_file_in(root)
+
+  if current_file then
+    require("yazi").yazi(nil, root, { reveal_path = current_file })
     return
   end
 
@@ -50,7 +78,7 @@ local function create_yazi_commands()
     )
   end, {
     nargs = "*",
-    desc = "Open yazi in the project root by default",
+    desc = "Open yazi in the project root and reveal the current file by default",
     complete = function(arg_lead, cmdline)
       if cmdline:match("^['<,'>]*Yazi[!]*%s+%w*$") then
         return vim
@@ -65,7 +93,7 @@ local function create_yazi_commands()
   })
 
   vim.api.nvim_create_user_command("YaziRoot", open_yazi_at_project_root, {
-    desc = "Open yazi in the project root",
+    desc = "Open yazi in the project root and reveal the current file",
   })
 end
 
@@ -81,7 +109,7 @@ return {
       {
         "<leader>fy",
         open_yazi_at_project_root,
-        desc = "Yazi (Root Dir)",
+        desc = "Yazi (Root Dir, Reveal File)",
       },
       {
         "<leader>fY",
