@@ -1,0 +1,49 @@
+# Keep popup-like Yazi components on the same light canvas as the rest of this branch.
+[confirm]
+border = { fg = "#bcc0cc", bg = "#eff1f5" }
+title = { fg = "#1e66f5", bg = "#eff1f5", bold = true }
+body = { fg = "#4c4f69", bg = "#eff1f5" }
+list = { fg = "#4c4f69", bg = "#eff1f5" }
+btn_yes = { fg = "#eff1f5", bg = "#40a02b", bold = true }
+btn_no = { fg = "#eff1f5", bg = "#d20f39", bold = true }
+
+[spot]
+border = { fg = "#bcc0cc", bg = "#eff1f5" }
+title = { fg = "#1e66f5", bg = "#eff1f5", bold = true }
+tbl_col = { fg = "#4c4f69", bg = "#ccd0da" }
+tbl_cell = { fg = "#4c4f69", bg = "#eff1f5" }
+
+[pick]
+border = { fg = "#bcc0cc", bg = "#eff1f5" }
+active = { fg = "#4c4f69", bg = "#ccd0da", bold = true }
+inactive = { fg = "#4c4f69", bg = "#eff1f5" }
+
+[input]
+border = { fg = "#bcc0cc", bg = "#eff1f5" }
+title = { fg = "#1e66f5", bg = "#eff1f5", bold = true }
+value = { fg = "#4c4f69", bg = "#eff1f5" }
+selected = { fg = "#eff1f5", bg = "#1e66f5" }
+
+[cmp]
+border = { fg = "#bcc0cc", bg = "#eff1f5" }
+active = { fg = "#4c4f69", bg = "#ccd0da", bold = true }
+inactive = { fg = "#4c4f69", bg = "#eff1f5" }
+
+[tasks]
+border = { fg = "#bcc0cc", bg = "#eff1f5" }
+title = { fg = "#1e66f5", bg = "#eff1f5", bold = true }
+hovered = { fg = "#4c4f69", bg = "#ccd0da", bold = true }
+
+[help]
+on = { fg = "#1e66f5", bg = "#eff1f5", bold = true }
+run = { fg = "#4c4f69", bg = "#eff1f5" }
+desc = { fg = "#6c6f85", bg = "#eff1f5" }
+hovered = { fg = "#4c4f69", bg = "#ccd0da", bold = true }
+footer = { fg = "#8c8fa1", bg = "#eff1f5" }
+
+[which]
+mask = { bg = "#eff1f5" }
+cand = { fg = "#1e66f5", bg = "#eff1f5", bold = true }
+rest = { fg = "#4c4f69", bg = "#eff1f5" }
+desc = { fg = "#6c6f85", bg = "#eff1f5" }
+separator_style = { fg = "#8c8fa1", bg = "#eff1f5" }

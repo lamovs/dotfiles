@@ -16,8 +16,18 @@ return {
       custom_highlights = function(colors)
         local panel = colors.base
         local border = colors.surface1
+        local selected = colors.surface0
 
         return {
+          NormalFloat = { fg = colors.text, bg = panel },
+          FloatBorder = { fg = border, bg = panel },
+          FloatTitle = { fg = colors.blue, bg = panel },
+          Pmenu = { fg = colors.text, bg = panel },
+          PmenuSel = { fg = colors.text, bg = selected },
+          PmenuSbar = { bg = panel },
+          PmenuThumb = { bg = border },
+          YaziFloat = { fg = colors.text, bg = panel },
+          YaziFloatBorder = { fg = border, bg = panel },
           SnacksPicker = { fg = colors.text, bg = panel },
           SnacksPickerInput = { fg = colors.text, bg = panel },
           SnacksPickerList = { fg = colors.text, bg = panel },
