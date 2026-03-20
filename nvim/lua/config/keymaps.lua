@@ -38,6 +38,17 @@ vim.keymap.set("n", "sv", function()
   })
 end, { desc = "Flash jump + go to definition (vsplit)" })
 
+-- Flash jump + go to definition (horizontal split)
+vim.keymap.set("n", "sh", function()
+  require("flash").jump({
+    action = function(match)
+      vim.api.nvim_win_set_cursor(match.win, match.pos)
+      vim.cmd("split")
+      vim.lsp.buf.definition()
+    end,
+  })
+end, { desc = "Flash jump + go to definition (split)" })
+
 vim.keymap.set("n", "<leader>yl", function()
   require("config.copy_path").copy_current_relative_path_with_line()
 end, { desc = "copy relative path:line" })
